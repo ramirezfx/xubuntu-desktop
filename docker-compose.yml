@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mate-desktop:
+    security_opt:
+    - seccomp:unconfined
+    shm_size: "2gb"
+    environment:
+    - USER={{ USERNAME }}
+    - PASSWORD={{ PASSWORD }}
+    cap_add:
+    - SYS_PTRACE
+    image: ramirezfx/ubuntu-mate-desktop:{{ VERSION }}
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+    - {{ NOMACHINE_PORT }}:4000/tcp
+    - {{ X2GO_PORT }}:22/TCP
+    volumes:
+    - mate-desktop:/data
+volumes:
+  mate-desktop:
+    driver: local
