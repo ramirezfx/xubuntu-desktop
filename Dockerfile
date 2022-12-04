@@ -5,7 +5,7 @@
 
 
 # SET Version
-ARG VER=kinetic-at
+ARG VER=kinetic
 FROM ramirezfx/xubuntu-iso:$VER
 ENV SHELL=/bin/bash
 
