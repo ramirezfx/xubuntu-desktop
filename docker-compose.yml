@@ -9,7 +9,7 @@ services:
     - PASSWORD={{ PASSWORD }}
     cap_add:
     - SYS_PTRACE
-    image: ramirezfx/ubuntu-mate-desktop:{{ VERSION }}
+    image: ramirezfx/xubuntu-desktop:{{ VERSION }}
     restart: always
     stdin_open: true
     tty: true
