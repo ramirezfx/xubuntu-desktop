@@ -13,9 +13,9 @@ ENV SHELL=/bin/bash
 #   replace en_US by your desired locale setting, 
 #   for example de_DE for german.
 #   Get a complete List at https://docs.moodle.org/dev/Table_of_locales
-ENV LANG de_AT.UTF-8
+ENV LANG=en_US.UTF-8
 # Set Timezone - Get a completet List by typing: cd /usr/share/zoneinfo/posix && find * -type f -or -type l | sort
-ENV TZ=Europe/Vienna
+ENV TZ=US/Eastern
 
 RUN bash -c 'if test -n "$http_proxy"; then echo "Acquire::http::proxy \"$http_proxy\";" > /etc/apt/apt.conf.d/99proxy; else echo "Using direct network connection."; fi'
 
