@@ -4,6 +4,7 @@ groupadd -r $USER -g 433 \
 && adduser $USER sudo \
 && mkdir /home/$USER \
 && chown -R $USER:$USER /home/$USER \
-&& echo $USER':'$PASSWORD | chpasswd
+&& echo $USER':'$PASSWORD | chpasswd \
+&& echo "setxkbmap de" > /home/$USER/.bashrc
 service ssh start && /etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
