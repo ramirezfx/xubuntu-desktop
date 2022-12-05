@@ -64,10 +64,6 @@ RUN echo $LANG UTF-8 > /etc/locale.gen && \
      locales && \
     lsb_release -cs | grep -qE "precise|trusty" && locale-gen $LANG || update-locale --reset LANG=$LANG
 
-# Set Keyboard-Layout:
-
-RUN setxkbmap de
-
 RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
     echo "Notice: it is precise or xenial, need workaround for resolvconf." && \
     echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections; \
