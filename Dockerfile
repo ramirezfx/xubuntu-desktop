@@ -36,7 +36,7 @@ RUN apt-get update && \
       libxv1 \
       sudo \
       lsb-release \
-      curl sudo wget pluma meld mate-calc atril pulseaudio vim x2goserver x2goserver-xsession
+      curl sudo wget pulseaudio vim x2goserver x2goserver-xsession
       
 
 
@@ -48,10 +48,6 @@ RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine
 # ADD nxserver.sh
 RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/ubuntu-mate-desktop/main/nxserver.sh
 RUN chmod +x /nxserver.sh
-
-# Create Data-Directory for Container
-RUN mkdir /data
-RUN chmod 777 /data
 
 # Download latest Google Chrome-Browser
 
@@ -75,21 +71,17 @@ RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
 RUN if lsb_release -cs | grep -q "precise"; then \
     echo "Notice: it is precise, need workarounds and PPAs." && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y python-software-properties && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/ppa && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/precise-mate && \
     env DEBIAN_FRONTEND=noninteractive apt-get update && \
     env DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-mate-core --force-yes; \
+    env DEBIAN_FRONTEND=noninteractive apt-get install -y xubuntu-core --force-yes; \
     else true; fi
 
 RUN if lsb_release -cs | grep -q "trusty"; then \
     echo "Notice: it is trusty, need workarounds and PPAs." && \    
     env DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/ppa && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/trusty-mate && \
     env DEBIAN_FRONTEND=noninteractive apt-get update && \
     env DEBIAN_FRONTEND=noninteractive apt-get upgrade -y --force-yes && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-mate-core --force-yes; \
+    env DEBIAN_FRONTEND=noninteractive apt-get install -y xubuntu-core --force-yes; \
     else true; fi
 
 
@@ -100,10 +92,10 @@ RUN if lsb_release -cs | grep -q "trusty"; then \
 # * task for 16.04 LTS and newer versions
 RUN if lsb_release -cs | grep -qE "precise|trusty"; then \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      ubuntu-mate-desktop --force-yes; \
+      xubuntu-desktop --force-yes; \
     else \
       env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      ubuntu-mate-desktop^; \
+      xubuntu-desktop^; \
     fi
 
 # 20.10 specifics
