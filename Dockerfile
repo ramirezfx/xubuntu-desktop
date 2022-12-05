@@ -14,11 +14,6 @@ ENV SHELL=/bin/bash
 #   for example de_DE for german.
 #   Get a complete List at https://docs.moodle.org/dev/Table_of_locales
 
-ENV XKBDMODEL=pc105
-ENV XKBLAYOUT=at
-ENV XKBOPTIONS=
-ENV XKBVARIANT=nodeadkeys
-
 ENV LANG de_AT.UTF-8
 # Set Timezone - Get a completet List by typing: cd /usr/share/zoneinfo/posix && find * -type f -or -type l | sort
 ENV TZ=Europe/Vienna
@@ -71,9 +66,7 @@ RUN echo $LANG UTF-8 > /etc/locale.gen && \
 
 # Set Keyboard-Layout:
 
-RUN echo 'XKBMODEL="'$XKBDMODEL'"' > /etc/default/keyboard && echo 'XKBLAYOUT="'$XKBLAYOUT'"' >> /etc/default/keyboard && \
-echo 'XKBOPTIONS="'$XKBOPTIONS'"' >> /etc/default/keyboard && echo 'XKBVARIANT="'$XKBVARIANT'"' >> /etc/default/keyboard && \
-echo 'XKBOPTIONS=""' >> /etc/default/keyboard
+RUN setxkbmap de
 
 RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
     echo "Notice: it is precise or xenial, need workaround for resolvconf." && \
