@@ -47,7 +47,7 @@ RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine
 
 
 # ADD nxserver.sh
-RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/ubuntu-mate-desktop/main/nxserver.sh
+RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.3-at/nxserver.sh
 RUN chmod +x /nxserver.sh
 
 # Download latest Google Chrome-Browser
