@@ -7,6 +7,6 @@ groupadd -r $USER -g 433 \
 && chown -R $USER:$USER /home/$USER \
 && echo $USER':'$PASSWORD | chpasswd
 echo $LANG UTF8 > /etc/locale.gen && \
-     locale-gen $LANG || update-locale --reset LANG=$LANG UTF-8
+     update-locale LANG=$LANG LANGUAGE
 service ssh start && /etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
