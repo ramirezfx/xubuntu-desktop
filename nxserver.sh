@@ -7,8 +7,7 @@ groupadd -r $USER -g 433 \
 && chown -R $USER:$USER /home/$USER \
 && echo $USER':'$PASSWORD | chpasswd
 echo $LANG UTF-8 > /etc/locale.gen && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-     locales && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y locales && \
      locale-gen $LANG || update-locale --reset LANG=$LANG
 service ssh start && /etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
