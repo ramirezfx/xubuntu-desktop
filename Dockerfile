@@ -47,7 +47,7 @@ RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine
 
 
 # ADD nxserver.sh
-RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.4/nxserver.sh
+RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.5/nxserver.sh
 RUN chmod +x /nxserver.sh
 
 # Download latest Google Chrome-Browser
@@ -57,12 +57,6 @@ RUN apt-get install -y /tmp/google-chrome-stable_current_amd64.deb
 
 # Set Timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-# Set Locale:
-RUN echo $LANG UTF-8 > /etc/locale.gen && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-     locales && \
-    lsb_release -cs | grep -qE "precise|trusty" && locale-gen $LANG || update-locale --reset LANG=$LANG
 
 RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
     echo "Notice: it is precise or xenial, need workaround for resolvconf." && \
