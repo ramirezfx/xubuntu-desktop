@@ -14,7 +14,6 @@ ENV SHELL=/bin/bash
 #   for example de_DE for german.
 #   Get a complete List at https://docs.moodle.org/dev/Table_of_locales
 
-ENV LANG de_AT.UTF-8
 # Set Timezone - Get a completet List by typing: cd /usr/share/zoneinfo/posix && find * -type f -or -type l | sort
 ENV TZ=Europe/Vienna
 
