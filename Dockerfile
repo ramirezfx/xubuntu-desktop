@@ -23,7 +23,7 @@ RUN apt-get update && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
       dbus-x11 \
       procps \
-      psmisc && \
+      psmisc \
       locales && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
       xdg-utils \
