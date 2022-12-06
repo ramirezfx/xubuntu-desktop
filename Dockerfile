@@ -14,9 +14,6 @@ ENV SHELL=/bin/bash
 #   for example de_DE for german.
 #   Get a complete List at https://docs.moodle.org/dev/Table_of_locales
 
-# Set Timezone - Get a completet List by typing: cd /usr/share/zoneinfo/posix && find * -type f -or -type l | sort
-ENV TZ=Europe/Vienna
-
 RUN bash -c 'if test -n "$http_proxy"; then echo "Acquire::http::proxy \"$http_proxy\";" > /etc/apt/apt.conf.d/99proxy; else echo "Using direct network connection."; fi'
 
 RUN apt-get update && \
@@ -54,9 +51,6 @@ RUN chmod +x /nxserver.sh
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
 RUN apt-get install -y /tmp/google-chrome-stable_current_amd64.deb
-
-# Set Timezone
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
     echo "Notice: it is precise or xenial, need workaround for resolvconf." && \
