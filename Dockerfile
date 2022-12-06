@@ -24,6 +24,7 @@ RUN apt-get update && \
       dbus-x11 \
       procps \
       psmisc && \
+      locales && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
       xdg-utils \
       xdg-user-dirs \
