@@ -6,7 +6,7 @@ groupadd -r $USER -g 433 \
 && echo "setxkbmap "$KBD_LANG > /home/$USER/.bashrc \
 && chown -R $USER:$USER /home/$USER \
 && echo $USER':'$PASSWORD | chpasswd
-echo $LANG > /etc/locale.gen && \
-     locale-gen $LANG || update-locale --reset LANG=$LANG
+echo $LANG UTF8 > /etc/locale.gen && \
+     locale-gen $LANG || update-locale --reset LANG=$LANG UTF-8
 service ssh start && /etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
