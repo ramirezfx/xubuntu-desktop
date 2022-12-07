@@ -9,6 +9,7 @@ services:
     - PASSWORD={{ PASSWORD }}
     - KBD_LANG={{ KBD_LANG }}
     - LANG={{ LANG }}
+    - TZ={{ TIMEZONE }}
     cap_add:
     - SYS_PTRACE
     image: ramirezfx/xubuntu-desktop:{{ VERSION }}
