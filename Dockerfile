@@ -13,9 +13,6 @@ ENV SHELL=/bin/bash
 #   replace en_US by your desired locale setting, 
 #   for example de_DE for german.
 #   Get a complete List at https://docs.moodle.org/dev/Table_of_locales
-ENV LANG de_AT.UTF-8
-# Set Timezone - Get a completet List by typing: cd /usr/share/zoneinfo/posix && find * -type f -or -type l | sort
-ENV TZ=Europe/Vienna
 
 RUN bash -c 'if test -n "$http_proxy"; then echo "Acquire::http::proxy \"$http_proxy\";" > /etc/apt/apt.conf.d/99proxy; else echo "Using direct network connection."; fi'
 
@@ -23,7 +20,8 @@ RUN apt-get update && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
       dbus-x11 \
       procps \
-      psmisc && \
+      psmisc \
+      locales && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
       xdg-utils \
       xdg-user-dirs \
@@ -36,7 +34,7 @@ RUN apt-get update && \
       libxv1 \
       sudo \
       lsb-release \
-      curl sudo wget pluma meld mate-calc atril pulseaudio vim x2goserver x2goserver-xsession
+      curl sudo wget pulseaudio vim x2goserver x2goserver-xsession
       
 
 
@@ -46,26 +44,13 @@ RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine
 
 
 # ADD nxserver.sh
-RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/ubuntu-mate-desktop/main/nxserver.sh
+RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.6/nxserver.sh
 RUN chmod +x /nxserver.sh
-
-# Create Data-Directory for Container
-RUN mkdir /data
-RUN chmod 777 /data
 
 # Download latest Google Chrome-Browser
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
 RUN apt-get install -y /tmp/google-chrome-stable_current_amd64.deb
-
-# Set Timezone
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-
-RUN echo $LANG UTF-8 > /etc/locale.gen && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-     locales && \
-    lsb_release -cs | grep -qE "precise|trusty" && locale-gen $LANG || update-locale --reset LANG=$LANG
 
 RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
     echo "Notice: it is precise or xenial, need workaround for resolvconf." && \
@@ -75,21 +60,17 @@ RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
 RUN if lsb_release -cs | grep -q "precise"; then \
     echo "Notice: it is precise, need workarounds and PPAs." && \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y python-software-properties && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/ppa && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/precise-mate && \
     env DEBIAN_FRONTEND=noninteractive apt-get update && \
     env DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-mate-core --force-yes; \
+    env DEBIAN_FRONTEND=noninteractive apt-get install -y xubuntu-core --force-yes; \
     else true; fi
 
 RUN if lsb_release -cs | grep -q "trusty"; then \
     echo "Notice: it is trusty, need workarounds and PPAs." && \    
     env DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/ppa && \
-    env DEBIAN_FRONTEND=noninteractive apt-add-repository -y ppa:ubuntu-mate-dev/trusty-mate && \
     env DEBIAN_FRONTEND=noninteractive apt-get update && \
     env DEBIAN_FRONTEND=noninteractive apt-get upgrade -y --force-yes && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y ubuntu-mate-core --force-yes; \
+    env DEBIAN_FRONTEND=noninteractive apt-get install -y xubuntu-core --force-yes; \
     else true; fi
 
 
@@ -100,10 +81,10 @@ RUN if lsb_release -cs | grep -q "trusty"; then \
 # * task for 16.04 LTS and newer versions
 RUN if lsb_release -cs | grep -qE "precise|trusty"; then \
     env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      ubuntu-mate-desktop --force-yes; \
+      xubuntu-desktop --force-yes; \
     else \
       env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      ubuntu-mate-desktop^; \
+      xubuntu-desktop^; \
     fi
 
 # 20.10 specifics
