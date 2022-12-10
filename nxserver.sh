@@ -9,5 +9,5 @@ groupadd -r $USER -g 433 \
 echo $LANG UTF8 > /etc/locale.gen && \
      update-locale LANG=$LANG LANGUAGE
 ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-service ssh start && /etc/NX/nxserver --startup
+/etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
