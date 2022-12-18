@@ -9,43 +9,22 @@ ARG VER=kinetic
 FROM ramirezfx/xubuntu-iso:$VER
 ENV SHELL=/bin/bash
 
-# Language/locale settings
-#   replace en_US by your desired locale setting, 
-#   for example de_DE for german.
-#   Get a complete List at https://docs.moodle.org/dev/Table_of_locales
-
 RUN bash -c 'if test -n "$http_proxy"; then echo "Acquire::http::proxy \"$http_proxy\";" > /etc/apt/apt.conf.d/99proxy; else echo "Using direct network connection."; fi'
 
 RUN apt-get update && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      dbus-x11 \
-      procps \
-      psmisc \
-      locales && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      xdg-utils \
-      xdg-user-dirs \
-      menu-xdg \
-      mime-support \
-      desktop-file-utils \
-      bash-completion && \
-    env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      mesa-utils-extra \
-      libxv1 \
-      sudo \
-      lsb-release \
-      curl sudo wget pulseaudio vim x2goserver x2goserver-xsession
-      
-
-
+    env DEBIAN_FRONTEND=noninteractive apt-get install -y dbus-x11 procps psmisc locales && \
+    env DEBIAN_FRONTEND=noninteractive apt-get install -y xdg-utils xdg-user-dirs menu-xdg mime-support desktop-file-utils bash-completion && \
+    env DEBIAN_FRONTEND=noninteractive apt-get install -y mesa-utils-extra libxv1 sudo lsb-release curl sudo wget pulseaudio vim x2goserver x2goserver-xsession
 
 # Download latest nomachine-server
 RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine.com/de/download/?id=5 | grep download.nomachine.com | cut -d '"' -f6 | head -1) && wget -O nomachine.deb $DLLINK && dpkg -i nomachine.deb
 
 
 # ADD nxserver.sh
-RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.6/nxserver.sh
+RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.7/nxserver.sh
 RUN chmod +x /nxserver.sh
+
+# Custom Packages And Sripts:
 
 # Download latest Google Chrome-Browser
 
