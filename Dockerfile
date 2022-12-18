@@ -21,10 +21,10 @@ RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine
 
 
 # ADD nxserver.sh
-RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.7/nxserver.sh && chmod +x /nxserver.sh
+RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.8/nxserver.sh && chmod +x /nxserver.sh
 
 # Custom Packages And Sripts:
-RUN wget -O /custom.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.7/custom.sh && chmod +x /custom.sh
+RUN wget -O /custom.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.8/custom.sh && chmod +x /custom.sh
 RUN /custom.sh
 
 # Workarounds:
