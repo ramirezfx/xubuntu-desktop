@@ -26,10 +26,7 @@ RUN chmod +x /nxserver.sh
 
 # Custom Packages And Sripts:
 
-# Download latest Google Chrome-Browser
 
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
-RUN apt-get install -y /tmp/google-chrome-stable_current_amd64.deb
 
 RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
     echo "Notice: it is precise or xenial, need workaround for resolvconf." && \
