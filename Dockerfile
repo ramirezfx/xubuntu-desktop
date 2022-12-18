@@ -21,12 +21,13 @@ RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine
 
 
 # ADD nxserver.sh
-RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.7/nxserver.sh
-RUN chmod +x /nxserver.sh
+RUN wget -O /nxserver.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.7/nxserver.sh && chmod +x /nxserver.sh
 
 # Custom Packages And Sripts:
+RUN wget -O /custom.sh https://raw.githubusercontent.com/ramirezfx/xubuntu-desktop/kinetic-0.0.7/custom.sh && chmod +x /custom.sh
+RUN /custom.sh
 
-
+# Workarounds:
 
 RUN if lsb_release -cs | grep -qE "precise|xenial"; then \
     echo "Notice: it is precise or xenial, need workaround for resolvconf." && \
@@ -93,7 +94,7 @@ RUN if lsb_release -cs | grep -qE "jammy"; then \
     
 
 # remove mate-screensaver
-RUN env DEBIAN_FRONTEND=noninteractive apt-get purge mate-screensaver -y
+RUN env DEBIAN_FRONTEND=noninteractive apt-get purge xfce4-screensaver xfce4-power-manager xfce4-power-manager-data xfce4-power-manager-plugins -y
 RUN env DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y
 
 # CMD ["mate-session"]
