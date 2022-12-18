@@ -23,3 +23,10 @@ wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafil
 bash -c "echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/jammy/ stable main' > /etc/apt/sources.list.d/seafile.list"
 apt update
 apt install -y seafile-gui
+
+# Cleanup
+# -------
+
+rm -Rf /var/cache/apt/archives/
+apt-get remove -y snapd
+rm -Rf /var/lib/snapd
