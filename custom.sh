@@ -29,6 +29,15 @@ apt install -y seafile-gui
 
 apt-get install -y ruby-full build-essential zlib1g-dev && gem install jekyll bundler && bundle install
 
+# Install Visual Studio
+-----------------------
+# To Get the download-link, install the Video-Download-Helper-Plugin for your browser. Navigate to https://code.visualstudio.com.
+# Navigate to the bottom and dowload the arm-64 Version manually. Then use the Video-Download-Helper to get the link and paste it below:
+
+DLLINK=https://az764295.vo.msecnd.net/stable/e8a3071ea4344d9d48ef8a4df2c097372b0c5161/code_1.74.2-1671533413_amd64.deb
+wget -O /tmp/code.deb $DLLINK
+apt-get install /tmp/code.deb
+
 # Cleanup
 # -------
 
