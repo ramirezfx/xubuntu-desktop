@@ -48,6 +48,10 @@ DLLINK=$(wget --save-headers --output-document - https://mobirise.com/history.ht
 # Cleanup
 # -------
 
+rm /tmp/code.deb
+rm /tmp/google-chrome-stable_current_amd64.deb
+rm /tmp/mobirise.deb
+
 rm -Rf /var/cache/apt/archives/
 apt-get remove -y snapd
 rm -Rf /var/lib/snapd
