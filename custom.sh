@@ -41,7 +41,7 @@ apt-get install /tmp/code.deb
 # Install Mobirise
 # ----------------
 
-DLLINK=$(wget --save-headers --output-document - https://mobirise.com/history.html | grep .deb | grep -Eo 'https://[^ >]+'|head -1 | cut -d'"' -f 1) \ 
+DLLINK=$(wget --save-headers --output-document - https://mobirise.com/history.html | grep .deb | grep -Eo 'https://[^ >]+'|head -1 | cut -d'"' -f 1) \
 && wget -O /tmp/mobirise.deb "$DLLINK" && apt-get install /tmp/mobirise.deb
 
 
