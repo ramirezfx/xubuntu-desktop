@@ -7,7 +7,7 @@ groupadd -r $USER -g 433 \
 && mkdir /home/$USER \
 && chown -R $USER:$USER /home/$USER \
 && echo $USER':'$PASSWORD | chpasswd
-userdel -r mate
+userdel -r xubuntu
 
 # Set Timezone
 ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
