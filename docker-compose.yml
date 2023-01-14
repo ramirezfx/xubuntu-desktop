@@ -11,7 +11,7 @@ services:
     - TZ={{ TIMEZONE }}
     cap_add:
     - SYS_PTRACE
-    image: ramirezfx/ubuntu-mate-desktop:{{ TAG }}
+    image: ramirezfx/xubuntu-desktop:{{ TAG }}
     restart: always
     stdin_open: true
     tty: true
