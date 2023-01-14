@@ -2,6 +2,8 @@ ARG VER=kinetic
 FROM ramirezfx/xubuntu-baseimage:$VER
 ENV SHELL=/bin/bash
 
+# To manage/import/export the xfce-panel use xfce4-panel-profiles
+
 # Intall Basic-Software and Software needed during installation
 RUN apt-get install -y git cups wget mate-calc mousepad xfce4-panel-profiles
 
