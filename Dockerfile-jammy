@@ -3,7 +3,7 @@ FROM ramirezfx/xubuntu-baseimage:$VER
 ENV SHELL=/bin/bash
 
 # Intall Basic-Software and Software needed during installation
-RUN apt-get install -y git cups wget mate-calc mousepad
+RUN apt-get install -y git cups wget mate-calc mousepad xfce4-panel-profiles
 
 # Download latest nomachine-server
 RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine.com/de/download/?id=5 | grep download.nomachine.com | cut -d '"' -f6 | head -1) && wget -O nomachine.deb $DLLINK && dpkg -i nomachine.deb
