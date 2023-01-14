@@ -1,4 +1,4 @@
-ARG VER=latest
+ARG VER=jammy
 FROM ramirezfx/ubuntu-mate-baseimage:$VER
 ENV SHELL=/bin/bash
 
