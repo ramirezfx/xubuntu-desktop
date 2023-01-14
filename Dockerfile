@@ -1,5 +1,5 @@
 ARG VER=latest
-FROM ramirezfx/ubuntu-mate-baseimage:$VER
+FROM ramirezfx/xubuntu-baseimage:$VER
 ENV SHELL=/bin/bash
 
 RUN apt-get install -y git cups wget
