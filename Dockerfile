@@ -11,7 +11,7 @@ RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine
 RUN wget -O /nxserver.sh https://github.com/ramirezfx/ubuntu-mate-desktop/raw/main/nxserver.sh && chmod +x /nxserver.sh
 
 # Custom Packages And Sripts:
-RUN wget -O /custom.sh https://github.com/ramirezfx/ubuntu-mate-desktop/raw/main/custom.sh && chmod +x /custom.sh
+RUN wget -O /custom.sh https://github.com/ramirezfx/xubuntu-desktop/raw/main/custom.sh && chmod +x /custom.sh
 
 # Add Language-Support:
 RUN wget -O /tmp/languages.txt https://github.com/ramirezfx/ubuntu-mate-desktop/raw/main/languages.txt && xargs -a /tmp/languages.txt apt-get install -y
