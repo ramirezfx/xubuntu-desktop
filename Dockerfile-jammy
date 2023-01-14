@@ -2,7 +2,8 @@ ARG VER=jammy
 FROM ramirezfx/xubuntu-baseimage:$VER
 ENV SHELL=/bin/bash
 
-RUN apt-get install -y git cups wget mate-calc
+# Intall Basic-Software and Software needed during installation
+RUN apt-get install -y git cups wget mate-calc mousepad
 
 # Download latest nomachine-server
 RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine.com/de/download/?id=5 | grep download.nomachine.com | cut -d '"' -f6 | head -1) && wget -O nomachine.deb $DLLINK && dpkg -i nomachine.deb
