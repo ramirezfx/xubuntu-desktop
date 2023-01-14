@@ -17,6 +17,10 @@ RUN wget -O /custom.sh https://github.com/ramirezfx/xubuntu-desktop/raw/main/cus
 RUN wget -O /tmp/languages.txt https://github.com/ramirezfx/xubuntu-desktop/raw/main/languages.txt && xargs -a /tmp/languages.txt apt-get install -y
 RUN rm -Rf /etc/localtime
 
+# remove mate-screensaver
+RUN env DEBIAN_FRONTEND=noninteractive apt-get purge xfce4-screensaver xfce4-power-manager xfce4-power-manager-data xfce4-power-manager-plugins -y
+RUN env DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y
+
 RUN /custom.sh
 
 ENTRYPOINT ["/nxserver.sh"]
