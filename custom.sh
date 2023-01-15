@@ -23,7 +23,7 @@ rm /tmp/google-chrome-stable_current_amd64.deb
 
 wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
 OSRELEASE=$(cat /etc/os-release | grep UBUNTU_CODENAME | cut -d "=" -f2)
-if [ $OSRELEASE == 'jammy'  ]
+if [ $OSRELEASE == 'jammy' ] || [ $OSRELEASE == 'kinetic' ]
 then
  echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/jammy/ stable main' > /etc/apt/sources.list.d/seafile.list
 fi
