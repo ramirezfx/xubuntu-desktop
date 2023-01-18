@@ -2,6 +2,8 @@ ARG VER=jammy
 FROM ramirezfx/xubuntu-baseimage:$VER
 ENV SHELL=/bin/bash
 
+RUN apt update
+
 # To manage/import/export the xfce-panel use xfce4-panel-profiles
 
 # Intall Basic-Software and Software needed during installation
