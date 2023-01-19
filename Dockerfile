@@ -10,7 +10,7 @@ RUN apt update
 RUN apt-get install -y git cups wget mate-calc mousepad xfce4-panel-profiles
 
 # Download latest nomachine-server
-RUN DLLINK=$(wget --save-headers --output-document - https://downloads.nomachine.com/de/download/?id=5 | grep download.nomachine.com | cut -d '"' -f6 | head -1) && wget -O nomachine.deb $DLLINK && dpkg -i nomachine.deb
+RUN wget -O /tmp/nomachine.deb "https://www.nomachine.com/free/linux/64/deb" && apt-get install -y /tmp/nomachine.deb
 
 # ADD nxserver.sh
 RUN wget -O /nxserver.sh https://github.com/ramirezfx/xubuntu-desktop/raw/main/nxserver.sh && chmod +x /nxserver.sh
